@@ -1,0 +1,13 @@
+---
+- name: "look for config for {{ name }}"
+  become_user: "{{ username }}"
+  shell: "{{ flynn_cli.executable_path }} cluster | grep '^{{ name }}'"
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+  register: already_exists
+
+- name: "add config for {{ name }}"
+  become_user: "{{ username }}"
+  when: already_exists|failed
+  command: "{{ flynn_cli.executable_path }} cluster add -p {{ tlspin }} {{ name }} {{ hostname }} {{ key }}"

@@ -1,0 +1,17 @@
+---
+- name: detect existing Flynn CLI
+  stat:
+    path: "{{ flynn_cli.executable_path }}"
+  register: existing_flynn
+
+- name: download Flynn CLI
+  when: existing_flynn.stat.exists == false
+  become: true
+  shell: "curl -sSL -A \"`uname -sp`\" https://dl.flynn.io/cli | zcat >{{ flynn_cli.executable_path }}"
+  args:
+    executable: /bin/bash
+
+- include: user_config.yml
+  vars:
+    username: "{{ item }}"
+  with_items: "{{ flynn_cli.users }}"
