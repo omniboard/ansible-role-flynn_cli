@@ -1,13 +1,13 @@
 ---
-- name: "look for config for {{ name }}"
+- name: "look for config for {{ cluster.name }}"
   become_user: "{{ username }}"
-  shell: "{{ flynn_cli.executable_path }} cluster | grep '^{{ name }}'"
+  shell: "{{ flynn_cli_executable }} cluster | grep '^{{ cluster.name }}'"
   args:
     executable: /bin/bash
   ignore_errors: true
   register: already_exists
 
-- name: "add config for {{ name }}"
+- name: "add config for {{ cluster.name }}"
   become_user: "{{ username }}"
   when: already_exists|failed
-  command: "{{ flynn_cli.executable_path }} cluster add -p {{ tlspin }} {{ name }} {{ hostname }} {{ key }}"
+  command: "{{ flynn_cli_executable }} cluster add -p {{ cluster.tlspin }} {{ cluster.name }} {{ cluster.hostname }} {{ cluster.key }}"

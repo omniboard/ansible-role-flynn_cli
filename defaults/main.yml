@@ -4,12 +4,12 @@ flynn_cli_executable: /usr/local/bin/flynn
 
 # Access to each of the clusters will be configured for each of the usernames.
 # If this is not provided, clusters will not be configured (the default).
-# flynn_cli_users:
+flynn_cli_users:
 # - flynnbackups
 
 # List of Flynn clusters along with access information (provided by Flynn after initialization).
 flynn_cli_clusters:
-- name:
-  tlspin: 1234=
-  hostname: flynn0.example.com
-  key: abcdefg
+# - name:
+#   tlspin: 1234=
+#   hostname: flynn0.example.com
+#   key: abcdefg

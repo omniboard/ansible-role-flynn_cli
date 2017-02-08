@@ -1,9 +1,0 @@
----
-- include: add_cluster.yml
-  vars:
-    username: "{{ username }}"
-    tlspin: "{{ item.tlspin }}"
-    name: "{{ item.name }}"
-    hostname: "{{ item.hostname }}"
-    key: "{{ item.key }}"
-  with_items: "{{ clusters }}"
