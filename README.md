@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/omniboard/ansible-role-flynn_cli.svg?branch=master)](https://travis-ci.org/omniboard/ansible-role-flynn_cli)
+
 # Flynn CLI
 
 This Ansible role installs the [Flynn](https://flynn.io) CLI client.
