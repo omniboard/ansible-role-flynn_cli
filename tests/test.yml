@@ -2,4 +2,16 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-flynn_cli
+    - name: ansible-role-flynn_cli
+      vars:
+        # In the future, I'd like to enable these to fully test the functionality.
+        # But the Flynn CLI client needs this to be a real cluster and valid credentials,
+        # because it downloads the SSL cert from it when added. So until someone can invest in
+        # adding Flynn to the test build, this will have to wait.
+        # flynn_cli_users:
+        # - flynnbackups
+        # flynn_cli_clusters:
+        # - name:
+        #   tlspin: 1234=
+        #   hostname: flynn0.example.com
+        #   key: abcdefg
