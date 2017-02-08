@@ -13,10 +13,15 @@
   args:
     executable: /bin/bash
 
+- name: Flynn CLI executable mode
+  become: true
+  file:
+    path: "{{ flynn_cli_executable }}"
+    mode: u=rwx,g=rwx,o=rx
+
 - name: add clusters to users
   include: user_config_cluster.yml
   when: flynn_cli_users and flynn_cli_clusters
-  # debug: 'msg="username: {{ username }} cluster: {{ cluster }}"'
   vars:
     username: "{{ item.0 }}"
     cluster: "{{ item.1 }}"
