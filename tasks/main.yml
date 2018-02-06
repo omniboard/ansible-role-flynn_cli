@@ -13,11 +13,13 @@
   args:
     executable: /bin/bash
 
-- name: Flynn CLI executable mode
-  become: true
-  file:
-    path: "{{ flynn_cli_executable }}"
-    mode: u=rwx,g=rwx,o=rx
+# Removed because this Flynn now places a symlink, so Ansible dies with an error because
+# we didn't provide `src`. But since Flynn makes it executable, this seems unnecessary.
+# - name: Flynn CLI executable mode
+#   become: true
+#   file:
+#     dest: "{{ flynn_cli_executable }}"
+#     mode: u=rwx,g=rwx,o=rx
 
 - name: add clusters to users
   include: user_config_cluster.yml
